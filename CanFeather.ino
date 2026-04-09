@@ -137,7 +137,12 @@ struct HW3Handler : public CarManagerBase {
     }
   }
 };
-
+if (frame.can_id == 0x2C4) {                 
+    frame.data[0] = 0x40;                   
+    frame.data[1] = 0x00;                    
+    mcp->sendMessage(&frame);
+    return;                                  
+}
 struct HW4Handler : public CarManagerBase {
   virtual void handelMessage(can_frame& frame) override {
     if (frame.can_id == 1016) {
